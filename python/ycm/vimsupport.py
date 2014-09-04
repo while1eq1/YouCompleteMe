@@ -108,7 +108,7 @@ def GetUnsavedAndCurrentBufferData():
 
 
 def GetBufferNumberForFilename( filename, open_file_if_needed = True ):
-  return GetIntValue( u"bufnr('{0}', {1})".format(
+  return GetIntValue( "bufnr('{0}', {1})".format(
       EscapeForVim( os.path.realpath( filename ) ),
       int( open_file_if_needed ) ) )
 
@@ -265,7 +265,7 @@ def GetReadOnlyVimGlobals( force_python_objects = False ):
 
 def VimExpressionToPythonType( vim_expression ):
   result = vim.eval( vim_expression )
-  if not isinstance( result, basestring ):
+  if not isinstance( result, str ):
     return result
   try:
     return int( result )

@@ -18,7 +18,7 @@
 # along with YouCompleteMe.  If not, see <http://www.gnu.org/licenses/>.
 
 import requests
-import urlparse
+import urllib.parse
 from base64 import b64decode, b64encode
 from retries import retries
 from requests_futures.sessions import FuturesSession
@@ -172,7 +172,7 @@ def _ValidateResponseObject( response ):
   return True
 
 def _BuildUri( handler ):
-  return urlparse.urljoin( BaseRequest.server_location, handler )
+  return urllib.parse.urljoin( BaseRequest.server_location, handler )
 
 
 SERVER_HEALTHY = False

@@ -176,7 +176,7 @@ def _ConnectGroupChildren( group_name_to_group ):
         parent_names.append( line[ len( links_to ): ] )
     return parent_names
 
-  for group in group_name_to_group.itervalues():
+  for group in list(group_name_to_group.values()):
     parent_names = GetParentNames( group )
 
     for parent_name in parent_names:

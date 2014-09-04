@@ -75,7 +75,7 @@ def _UpdateSquiggles( buffer_number_to_line_to_diags ):
   vimsupport.ClearYcmSyntaxMatches()
   line_to_diags = buffer_number_to_line_to_diags[ vim.current.buffer.number ]
 
-  for diags in line_to_diags.itervalues():
+  for diags in line_to_diags.values():
     for diag in diags:
       location_extent = diag[ 'location_extent' ]
       is_error = _DiagnosticIsError( diag )
@@ -104,12 +104,12 @@ def _UpdateSquiggles( buffer_number_to_line_to_diags ):
 
 def _UpdateSigns( buffer_number_to_line_to_diags, next_sign_id ):
   vimsupport.UnplaceAllSignsInBuffer( vim.current.buffer.number )
-  for buffer_number, line_to_diags in buffer_number_to_line_to_diags.iteritems():
+  for buffer_number, line_to_diags in buffer_number_to_line_to_diags.items():
     if not vimsupport.BufferIsVisible( buffer_number ):
       continue
 
     vimsupport.UnplaceAllSignsInBuffer( buffer_number )
-    for line, diags in line_to_diags.iteritems():
+    for line, diags in line_to_diags.items():
       for diag in diags:
         vimsupport.PlaceSign( next_sign_id,
                               line,
@@ -128,8 +128,8 @@ def _ConvertDiagListToDict( diag_list ):
     line_number = location[ 'line_num' ]
     buffer_to_line_to_diags[ buffer_number ][ line_number ].append( diag )
 
-  for line_to_diags in buffer_to_line_to_diags.itervalues():
-    for diags in line_to_diags.itervalues():
+  for line_to_diags in buffer_to_line_to_diags.values():
+    for diags in line_to_diags.values():
       # We also want errors to be listed before warnings so that errors aren't
       # hidden by the warnings; Vim won't place a sign oven an existing one.
       diags.sort( key = lambda diag: ( diag[ 'location' ][ 'column_num' ],

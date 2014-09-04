@@ -32,7 +32,7 @@ def BuildServerConf():
 
   vim_globals = vimsupport.GetReadOnlyVimGlobals( force_python_objects = True )
   server_conf = {}
-  for key, value in vim_globals.items():
+  for key, value in list(vim_globals.items()):
     if not key.startswith( YCM_VAR_PREFIX ):
       continue
     try:
@@ -48,7 +48,7 @@ def BuildServerConf():
 def LoadJsonDefaultsIntoVim():
   defaults = user_options_store.DefaultOptions()
   vim_defaults = {}
-  for key, value in defaults.iteritems():
+  for key, value in list(defaults.items()):
     vim_defaults[ 'ycm_' + key ] = value
 
   vimsupport.LoadDictIntoVimGlobals( vim_defaults, overwrite = False )

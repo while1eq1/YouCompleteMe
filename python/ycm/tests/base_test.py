@@ -132,8 +132,8 @@ def OverlapLength_Basic_test():
 
 @with_setup( Setup )
 def OverlapLength_BasicWithUnicode_test():
-  eq_( 3, base.OverlapLength( u'bar fäö', u'fäö bar' ) )
-  eq_( 3, base.OverlapLength( u'zoofäö', u'fäözoo' ) )
+  eq_( 3, base.OverlapLength( 'bar fäö', 'fäö bar' ) )
+  eq_( 3, base.OverlapLength( 'zoofäö', 'fäözoo' ) )
 
 
 @with_setup( Setup )

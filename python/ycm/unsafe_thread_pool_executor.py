@@ -6,7 +6,7 @@
 #   (the Python Software Foundation License).
 
 
-from __future__ import with_statement
+
 import threading
 import weakref
 import sys
@@ -16,7 +16,7 @@ from concurrent.futures import _base
 try:
     import queue
 except ImportError:
-    import Queue as queue
+    import queue as queue
 
 
 # This file provides an UnsafeThreadPoolExecutor, which operates exactly like
